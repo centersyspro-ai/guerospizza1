@@ -1,0 +1,2142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Güero´sPizza | Las Mejores Pizzas Artesanales</title>
+    <meta name="description" content="Güero´sPizza - 20 años llevando deliciosa pizza a su mesa. Pizzas artesanales, servicio en local y a domicilio. Pedidos por Whatsapp.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Manifest para PWA -->
+    <link rel="manifest" href="assets/js/manifest.json">
+    <style>
+        /* Variables CSS para pizzas */
+        :root {
+            --primary-color: #D32F2F; /* Rojo pizzas */
+            --secondary-color: #FF9800; /* Naranja */
+            --accent-color: #4CAF50; /* Verde */
+            --text-color: #333333;
+            --light-color: #f8f8f8;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        /* Reset y estilos base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--white);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            margin: 0.5rem auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        /* Header */
+        header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 60px;
+            height: 60px;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--white);
+        }
+
+        .logo-text span {
+            color: var(--secondary-color);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin-left: 1.5rem;
+        }
+
+        .nav-menu a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 700;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: var(--secondary-color);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--secondary-color);
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: var(--white);
+            margin: 5px;
+            transition: var(--transition);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .highlight {
+            color: var(--secondary-color);
+            font-weight: 700;
+        }
+
+        /* About Section */
+        .about {
+            background-color: var(--light-color);
+        }
+
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 2rem;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        .about-image img {
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+        }
+
+        .about-image img:hover {
+            transform: scale(1.02);
+        }
+
+        /* Menu Section */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .menu-item {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .menu-image {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .menu-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .menu-item:hover .menu-image img {
+            transform: scale(1.05);
+        }
+
+        .menu-content {
+            padding: 1.5rem;
+        }
+
+        .menu-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-price {
+            color: var(--secondary-color);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .menu-ingredients {
+            color: #666;
+            font-size: 0.9rem;
+            margin: 0.5rem 0;
+        }
+
+        /* Specials Section */
+        .specials {
+            background-color: #fff8e1;
+        }
+
+        .specials-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .specials-text {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 2rem;
+        }
+
+        .specials-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        .specials-image img {
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+        }
+
+        .specials-image img:hover {
+            transform: scale(1.02);
+        }
+
+        /* Gallery Section */
+        .gallery {
+            background-color: var(--light-color);
+        }
+
+        .carousel {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .carousel-track-container {
+            overflow: hidden;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-slide {
+            width: 100%;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .carousel-image {
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+        }
+
+        .carousel-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: var(--white);
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: var(--white);
+            border: none;
+            font-size: 1.5rem;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 10;
+            border-radius: 4px;
+        }
+
+        .carousel-btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .carousel-btn.prev {
+            left: 10px;
+        }
+
+        .carousel-btn.next {
+            right: 10px;
+        }
+
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+            gap: 8px;
+        }
+
+        .carousel-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #ccc;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+
+        .carousel-indicator.active {
+            background-color: var(--primary-color);
+            transform: scale(1.2);
+        }
+
+        .carousel-indicator:hover {
+            background-color: var(--primary-color);
+        }
+
+        /* Map Section */
+        .map-container {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .map-container iframe {
+            display: block;
+            width: 100%;
+            height: 450px;
+            border: none;
+        }
+
+        /* Hours Section */
+        .hours {
+            background-color: var(--light-color);
+        }
+
+        .hours-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hours-table {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            min-width: 300px;
+        }
+
+        .hours-table h3 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .hours-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .hours-table tr {
+            border-bottom: 1px solid #eee;
+        }
+
+        .hours-table td {
+            padding: 0.8rem 0;
+        }
+
+        .hours-table .day {
+            font-weight: 700;
+            color: var(--text-color);
+        }
+
+        .hours-table .time {
+            text-align: right;
+            color: #666;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            bottom: -8px;
+            left: 0;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column ul li a {
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--secondary-color);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--secondary-color);
+            color: var(--white);
+            border-radius: 50%;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--white);
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .whatsapp-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    transition: var(--transition);
+    animation: pulse 2s infinite;
+    cursor: pointer;
+}
+
+.whatsapp-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    background-color: #1da851;
+}
+
+/* Icono de WhatsApp SVG - Auricular de teléfono (símbolo de llamadas) */
+.whatsapp-icon-btn {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23FFFFFF' d='M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+
+/* Icono de WhatsApp SVG con fallback */
+.whatsapp-icon-btn {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M20.5 3.4A12.1 12.1 0 0 0 12 0 12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12c0-2.6-.8-4.7-1.5-6.6zM12 22a10 10 0 1 1 10-10 10 10 0 0 1-10 10zm5.5-14.5c-.3-.5-1-.8-1.5-.8s-1.2.2-1.6.6c-.4.4-.7 1-.7 1.5s.2 1.1.6 1.5l.2.2c.2.2.4.4.5.6.2.3.2.6.2.9 0 .4-.1.8-.3 1.1l-.1.1c-.3.4-.7.7-1.2.7s-1-.2-1.3-.6c-.5-.5-.9-1.1-1.1-1.8-.2-.7-.2-1.4.1-2.1.2-.6.6-1.1 1.1-1.5.4-.4.9-.7 1.4-.9s1-.2 1.6-.2c.5 0 1 .1 1.4.3.4.2.7.5.9.9.2.4.3.8.3 1.2 0 .5-.2 1-.5 1.4-.3.4-.7.7-1.1.9-.4.2-.9.3-1.4.3-.3 0-.6 0-.9-.1-.3 0-.6-.2-.8-.4-.2-.2-.3-.5-.3-.8 0-.3.1-.6.3-.8.2-.2.5-.4.8-.5.3-.1.6-.2.9-.2.3 0 .6.1.9.2.3.1.5.3.7.5.2.2.3.5.3.8 0 .3-.1.6-.3.8-.2.2-.5.4-.8.5-.3.1-.6.2-.9.2-.3 0-.6 0-.9-.1-.3 0-.6-.2-.8-.4-.2-.2-.3-.5-.3-.8 0-.3.1-.6.3-.8.2-.2.5-.4.8-.5.3-.1.6-.2.9-.2.3 0 .6.1.9.2.3.1.5.3.7.5.2.2.3.5.3.8 0 .3-.1.6-.3.8-.2.2-.5.4-.8.5z'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+
+/* Fallback si la imagen SVG no carga */
+.whatsapp-btn::before {
+    content: '💬'; /* Emoji de WhatsApp como fallback */
+    font-size: 30px;
+    color: white;
+    display: none; /* Ocultar por defecto */
+}
+
+/* Mostrar emoji solo si la imagen falla */
+.whatsapp-btn:not(:has(.whatsapp-icon-btn))::before {
+    display: block;
+}
+
+/* Ocultar icono de FontAwesome original */
+.whatsapp-btn i {
+    display: none;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
+
+/* Ajustar para dispositivos pequeños */
+@media (max-width: 768px) {
+    .whatsapp-btn {
+        width: 55px;
+        height: 55px;
+        bottom: 15px;
+        right: 15px;
+    }
+    
+    .whatsapp-icon-btn {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .whatsapp-btn::before {
+        font-size: 28px;
+    }
+}
+
+/* Efecto de sonido visual */
+@keyframes ring {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(15deg); }
+    50% { transform: rotate(-15deg); }
+    75% { transform: rotate(10deg); }
+    100% { transform: rotate(0deg); }
+}
+
+.whatsapp-btn:hover .whatsapp-icon-btn {
+    animation: ring 0.5s ease;
+}
+
+
+       /* Modal para pedido de pizza - CORREGIDO PARA SCROLL */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    backdrop-filter: blur(5px);
+    overflow: auto;
+    padding: 20px 0;
+}
+
+.modal-content {
+    background-color: var(--white);
+    margin: 2% auto;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    position: relative;
+    animation: modalSlideIn 0.3s ease-out;
+    overflow-y: auto;
+}
+
+/* Asegurarse que el modal se vea bien en móviles */
+@media (max-height: 700px) {
+    .modal-content {
+        margin: 1% auto;
+        max-height: 98vh;
+    }
+}
+
+/* Para pantallas muy pequeñas */
+@media (max-width: 480px) {
+    .modal-content {
+        margin: 0 auto;
+        border-radius: 0;
+        width: 100%;
+        height: 100vh;
+        max-height: 100vh;
+        max-width: 100%;
+    }
+}
+
+        /* Pizza Selection - MODIFICADO PARA MÚLTIPLES SELECCIONES */
+.pizza-options {
+    margin: 1rem 0;
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.pizza-option {
+    padding: 0.8rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-bottom: 0.5rem;
+    background: white;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pizza-option:hover {
+    border-color: var(--primary-color);
+    background-color: #fff5f5;
+}
+
+.pizza-option.selected {
+    border-color: var(--primary-color);
+    background-color: #ffeaea;
+}
+
+.pizza-name {
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 0.3rem;
+    flex: 1;
+    min-width: 200px;
+}
+
+.pizza-desc {
+    font-size: 0.9rem;
+    color: #666;
+    flex-basis: 100%;
+    margin-top: 5px;
+}
+
+.pizza-price {
+    color: var(--secondary-color);
+    font-weight: 700;
+    margin-left: 10px;
+}
+
+.pizza-quantity {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 15px;
+}
+
+.quantity-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid var(--primary-color);
+    background: white;
+    color: var(--primary-color);
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.quantity-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.quantity-value {
+    min-width: 30px;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+/* ========== WHATSAPP MODAL MEJORADO ========== */
+/* Estilos generales mejorados */
+.whatsapp-modal-content {
+    background-color: var(--white);
+    margin: 2% auto;
+    padding: 2rem;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    position: relative;
+    animation: modalSlideIn 0.4s ease-out;
+    overflow-y: auto;
+    font-size: 18px; /* Letras más grandes para mejor lectura */
+}
+
+/* Asegurar legibilidad en móviles */
+@media (max-width: 768px) {
+    .whatsapp-modal-content {
+        padding: 1.5rem;
+        margin: 5% auto;
+        border-radius: 12px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .whatsapp-modal-content {
+        margin: 0;
+        width: 100%;
+        height: 100vh;
+        max-height: 100vh;
+        border-radius: 0;
+        padding: 1rem;
+        font-size: 16px;
+    }
+}
+
+/* Botón de cerrar mejorado */
+.whatsapp-close-modal {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--primary-color);
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    z-index: 10;
+}
+
+.whatsapp-close-modal:hover {
+    background-color: rgba(211, 47, 47, 0.1);
+    transform: rotate(90deg);
+}
+
+/* Títulos grandes */
+.whatsapp-modal-content h3 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    padding-bottom: 15px;
+    border-bottom: 3px solid var(--secondary-color);
+}
+
+@media (max-width: 768px) {
+    .whatsapp-modal-content h3 {
+        font-size: 1.6rem;
+    }
+}
+
+/* Campos de formulario grandes */
+.whatsapp-form-group {
+    margin-bottom: 1.5rem;
+}
+
+.whatsapp-form-group label {
+    display: block;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+    color: var(--text-color);
+    font-size: 1.1rem;
+}
+
+.whatsapp-form-control {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    transition: var(--transition);
+    font-family: 'Lato', sans-serif;
+}
+
+.whatsapp-form-control:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1);
+}
+
+@media (max-width: 768px) {
+    .whatsapp-form-control {
+        padding: 12px;
+        font-size: 1rem;
+    }
+}
+
+/* Ubicación mejorada */
+.location-section {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+    border: 2px solid #e9ecef;
+}
+
+.location-status {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+    border: 2px solid #dee2e6;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.location-success {
+    border-color: #28a745;
+    background-color: rgba(40, 167, 69, 0.05);
+}
+
+.location-error {
+    border-color: #dc3545;
+    background-color: rgba(220, 53, 69, 0.05);
+}
+
+.location-loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(0,0,0,.1);
+    border-radius: 50%;
+    border-top-color: var(--primary-color);
+    animation: spin 1s ease-in-out infinite;
+    margin-left: 10px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.location-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+/* Botones grandes y visibles */
+.btn-whatsapp {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #25D366;
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 700;
+    transition: var(--transition);
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    font-size: 1.2rem;
+    width: 100%;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+}
+
+.btn-whatsapp .whatsapp-icon {
+    width: 24px;
+    height: 24px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M20.5 3.4A12.1 12.1 0 0 0 12 0 12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12c0-2.6-.8-4.7-1.5-6.6zM12 22a10 10 0 1 1 10-10 10 10 0 0 1-10 10zm5.5-14.5c-.3-.5-1-.8-1.5-.8s-1.2.2-1.6.6c-.4.4-.7 1-.7 1.5s.2 1.1.6 1.5l.2.2c.2.2.4.4.5.6.2.3.2.6.2.9 0 .4-.1.8-.3 1.1l-.1.1c-.3.4-.7.7-1.2.7s-1-.2-1.3-.6c-.5-.5-.9-1.1-1.1-1.8-.2-.7-.2-1.4.1-2.1.2-.6.6-1.1 1.1-1.5.4-.4.9-.7 1.4-.9s1-.2 1.6-.2c.5 0 1 .1 1.4.3.4.2.7.5.9.9.2.4.3.8.3 1.2 0 .5-.2 1-.5 1.4-.3.4-.7.7-1.1.9-.4.2-.9.3-1.4.3-.3 0-.6 0-.9-.1-.3 0-.6-.2-.8-.4-.2-.2-.3-.5-.3-.8 0-.3.1-.6.3-.8.2-.2.5-.4.8-.5.3-.1.6-.2.9-.2.3 0 .6.1.9.2.3.1.5.3.7.5.2.2.3.5.3.8 0 .3-.1.6-.3.8-.2.2-.5.4-.8.5-.3.1-.6.2-.9.2-.3 0-.6 0-.9-.1-.3 0-.6-.2-.8-.4-.2-.2-.3-.5-.3-.8 0-.3.1-.6.3-.8.2-.2.5-.4.8-.5.3-.1.6-.2.9-.2.3 0 .6.1.9.2.3.1.5.3.7.5.2.2.3.5.3.8 0 .3-.1.6-.3.8-.2.2-.5.4-.8.5z'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    flex-shrink: 0;
+}
+
+/* Fallback para el botón del modal */
+.btn-whatsapp::before {
+    content: '💬';
+    display: none;
+    font-size: 20px;
+}
+
+.btn-whatsapp:not(:has(.whatsapp-icon))::before {
+    display: inline-block;
+}
+
+.btn-whatsapp:hover {
+    background-color: #1da851;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+}
+
+.btn-whatsapp:hover .whatsapp-icon {
+    animation: ring 0.5s ease;
+}
+
+
+/* Campo de ubicación manual */
+.manual-location-input {
+    display: none;
+    margin-top: 1rem;
+}
+
+.manual-location-input.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Validación de teléfono */
+.validation-message {
+    margin-top: 5px;
+    font-size: 0.9rem;
+    min-height: 20px;
+}
+
+.validation-success {
+    color: #28a745;
+}
+
+.validation-error {
+    color: #dc3545;
+}
+
+/* Icono de WhatsApp con fallback */
+.whatsapp-icon {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M20.5 3.4A12.1 12.1 0 0 0 12 0 12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12c0-2.6-.8-4.7-1.5-6.6zM12 22a10 10 0 1 1 10-10 10 10 0 0 1-10 10zm5.5-14.5c-.3-.5-1-.8-1.5-.8s-1.2.2-1.6.6c-.4.4-.7 1-.7 1.5s.2 1.1.6 1.5l.2.2c.2.2.4.4.5.6.2.3.2.6.2.9 0 .4-.1.8-.3 1.1l-.1.1c-.3.4-.7.7-1.2.7s-1-.2-1.3-.6c-.5-.5-.9-1.1-1.1-1.8-.2-.7-.2-1.4.1-2.1.2-.6.6-1.1 1.1-1.5.4-.4.9-.7 1.4-.9s1-.2 1.6-.2c.5 0 1 .1 1.4.3.4.2.7.5.9.9.2.4.3.8.3 1.2 0 .5-.2 1-.5 1.4-.3.4-.7.7-1.1.9-.4.2-.9.3-1.4.3-.3 0-.6 0-.9-.1-.3 0-.6-.2-.8-.4-.2-.2-.3-.5-.3-.8 0-.3.1-.6.3-.8.2-.2.5-.4.8-.5.3-.1.6-.2.9-.2.3 0 .6.1.9.2.3.1.5.3.7.5.2.2.3.5.3.8 0 .3-.1.6-.3.8-.2.2-.5.4-.8.5-.3.1-.6.2-.9.2-.3 0-.6 0-.9-.1-.3 0-.6-.2-.8-.4-.2-.2-.3-.5-.3-.8 0-.3.1-.6.3-.8.2-.2.5-.4.8-.5.3-.1.6-.2.9-.2.3 0 .6.1.9.2.3.1.5.3.7.5.2.2.3.5.3.8 0 .3-.1.6-.3.8-.2.2-.5.4-.8.5-.3.1-.6.2-.9.2-.3 0-.6 0-.9-.1-.3 0-.6-.2-.8-.4-.2-.2-.3-.5-.3-.8 0-.3.1-.6.3-.8.2-.2.5-.4.8-.5.3-.1.6-.2.9-.2.3 0 .6.1.9.2.3.1.5.3.7.5.2.2.3.5.3.8 0 .3-.1.6-.3.8-.2.2-.5.4-.8.5z'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+/* Fallback si FontAwesome no carga */
+.whatsapp-btn i {
+    font-size: 35px;
+    color: var(--white);
+}
+
+.whatsapp-btn i:before {
+    content: '📱'; /* Fallback emoji si FontAwesome falla */
+}
+
+/* Responsive buttons */
+@media (max-width: 480px) {
+    .location-buttons {
+        flex-direction: column;
+    }
+    
+    .btn-location,
+    .btn-manual-location {
+        width: 100%;
+    }
+    
+    .btn-whatsapp {
+        padding: 12px 20px;
+        font-size: 1.1rem;
+    }
+}
+
+/* Colores profesionales para pizzería */
+.whatsapp-header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 1.5rem;
+    border-radius: 12px 12px 0 0;
+    margin: -2rem -2rem 2rem -2rem;
+    text-align: center;
+}
+
+.whatsapp-header h3 {
+    color: white;
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+/* Animación para el modal */
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Textarea mejorada */
+textarea.whatsapp-form-control {
+    min-height: 120px;
+    resize: vertical;
+    font-family: 'Lato', sans-serif;
+}
+
+/* Contador de caracteres */
+.char-counter {
+    text-align: right;
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 5px;
+}
+
+/* Indicador de campo requerido */
+.required::after {
+    content: " *";
+    color: #dc3545;
+}
+
+/* Mensaje de éxito */
+.success-message {
+    text-align: center;
+    padding: 2rem;
+    background-color: #d4edda;
+    color: #155724;
+    border-radius: 8px;
+    border: 1px solid #c3e6cb;
+    margin: 1rem 0;
+    display: none;
+}
+
+.success-message.show {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+
+        /* Estilos para APK/APP */
+        .app-mode .whatsapp-btn {
+            bottom: 80px;
+        }
+
+        .app-mode header {
+            padding-top: env(safe-area-inset-top);
+        }
+
+        @media (display-mode: standalone) {
+            body {
+                padding-top: env(safe-area-inset-top);
+            }
+            
+            .hero {
+                margin-top: calc(80px + env(safe-area-inset-top));
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 1rem 0;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                width: 80%;
+                height: calc(100vh - 80px);
+                background-color: var(--primary-color);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 2rem;
+                transition: var(--transition);
+                z-index: 999;
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .nav-menu li {
+                margin: 1.5rem 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hamburger.active div:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+
+            .hamburger.active div:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active div:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-text, .specials-text {
+                padding-right: 0;
+                margin-bottom: 2rem;
+            }
+
+            .carousel-image {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 3rem 0;
+            }
+
+            .btn {
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="assets/images/logo-pizza.jpg" alt="Pizzería Don Guiseppe Logo">
+                <div class="logo-text">Güero´s <span>Pizza</span></div>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#menu">Menú</a></li>
+                    <li><a href="#especialidades">Especialidades</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+                <div class="hamburger">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>Güero´s Pizza</h1>
+            <p>20 años de tradición en Apaseo el Alto</p>
+            <p>Pizzas artesanales</p>
+            <a href="#menu" class="btn">Ver Menú</a>
+            <a href="javascript:void(0)" class="btn" id="orderHeroBtn" style="margin-left: 10px; background-color: var(--secondary-color);">Pedir Ahora</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about" id="nosotros">
+        <div class="container">
+            <h2 class="section-title">Nuestra Historia</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Desde 2005, <span class="highlight">Güero´s Pizza</span> ha sido sinónimo de auténtica pizza italiana. Sus fundadores han mantenido la misma calidad y sabor únicos en Apaseo el Alto.</p>
+                    <p>Nuestra harina, queso mozzarella, y salsa de tomate son de la mejor calidad y nuestro secreto mejor guardado: la masa con nuestra receta secreta.</p>
+                    <p>Todas nuestras pizzas son preparadas a mano y horneadas en horno a altas temperaturas, alcanzando los 450°C que garantizan ese sabor y textura únicos.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1595708684082-a173bb3a06c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Chef preparando pizza" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="section" id="menu">
+        <div class="container">
+            <h2 class="section-title">Nuestro Menú</h2>
+            <div class="menu-grid">
+                <!-- Pizza 1 -->
+                <div class="menu-item">
+                    <div class="menu-image">
+                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Pizza Margherita" loading="lazy">
+                    </div>
+                    <div class="menu-content">
+                        <h3>Margherita Tradicional</h3>
+                        <div class="menu-price">$199</div>
+                        <div class="menu-ingredients">Salsa de tomate, mozzarella fresca, albahaca, aceite de oliva extra virgen</div>
+                        <button class="btn" style="padding: 8px 20px; font-size: 0.9rem;" data-pizza="Margherita Tradicional" data-price="199">Ordenar</button>
+                    </div>
+                </div>
+                
+                <!-- Pizza 2 -->
+                <div class="menu-item">
+                    <div class="menu-image">
+                        <img src="https://images.unsplash.com/photo-1593246049226-ded77bf90326?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Pizza Pepperoni" loading="lazy">
+                    </div>
+                    <div class="menu-content">
+                        <h3>Pepperoni Especial</h3>
+                        <div class="menu-price">$229</div>
+                        <div class="menu-ingredients">Doble pepperoni, salsa especial, queso mozzarella, orégano</div>
+                        <button class="btn" style="padding: 8px 20px; font-size: 0.9rem;" data-pizza="Pepperoni Especial" data-price="229">Ordenar</button>
+                    </div>
+                </div>
+                
+                <!-- Pizza 3 -->
+                <div class="menu-item">
+                    <div class="menu-image">
+                        <img src="https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Pizza Hawaiana" loading="lazy">
+                    </div>
+                    <div class="menu-content">
+                        <h3>Hawaiana Artesanal</h3>
+                        <div class="menu-price">$219</div>
+                        <div class="menu-ingredients">Jamón de pavo, piña asada, queso mozzarella, salsa BBQ</div>
+                        <button class="btn" style="padding: 8px 20px; font-size: 0.9rem;" data-pizza="Hawaiana Artesanal" data-price="219">Ordenar</button>
+                    </div>
+                </div>
+                
+                <!-- Pizza 4 -->
+                <div class="menu-item">
+                    <div class="menu-image">
+                        <img src="https://images.unsplash.com/photo-1559978137-8c560d91e9e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Pizza Mexicana" loading="lazy">
+                    </div>
+                    <div class="menu-content">
+                        <h3>Mexicana Picante</h3>
+                        <div class="menu-price">$239</div>
+                        <div class="menu-ingredients">Chorizo, jalapeños, pimiento, cebolla, salsa de chile habanero</div>
+                        <button class="btn" style="padding: 8px 20px; font-size: 0.9rem;" data-pizza="Mexicana Picante" data-price="239">Ordenar</button>
+                    </div>
+                </div>
+                
+                <!-- Pizza 5 -->
+                <div class="menu-item">
+                    <div class="menu-image">
+                        <img src="data:image/jpeg;base64,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" alt="Pizza Vegetariana" loading="lazy">
+                    </div>
+                    <div class="menu-content">
+                        <h3>Vegetariana Fresca</h3>
+                        <div class="menu-price">$219</div>
+                        <div class="menu-ingredients">Champiñones, pimientos, cebolla, aceitunas, espinacas, queso de cabra</div>
+                        <button class="btn" style="padding: 8px 20px; font-size: 0.9rem;" data-pizza="Vegetariana Fresca" data-price="219">Ordenar</button>
+                    </div>
+                </div>
+                
+                <!-- Pizza 6 -->
+                <div class="menu-item">
+                    <div class="menu-image">
+                        <img src="https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Pizza 4 Quesos" loading="lazy">
+                    </div>
+                    <div class="menu-content">
+                        <h3>Cuatro Quesos</h3>
+                        <div class="menu-price">$249</div>
+                        <div class="menu-ingredients">Mozzarella, gorgonzola, parmesano, queso de cabra, miel de abeja</div>
+                        <button class="btn" style="padding: 8px 20px; font-size: 0.9rem;" data-pizza="Cuatro Quesos" data-price="249">Ordenar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specials Section -->
+    <section class="section specials" id="especialidades">
+        <div class="container">
+            <h2 class="section-title">Especialidades de la Casa</h2>
+            <div class="specials-content">
+                <div class="specials-text">
+                    <h3>Pizza Don Guiseppe</h3>
+                    <p>Nuestra pizza insignia, creada por el chef fundador. Combina lo mejor de Italia con sabores mexicanos.</p>
+                    <p><strong>Ingredientes exclusivos:</strong> Jamón serrano, chorizo ibérico, champiñones portobello, trufa negra, queso manchego y nuestro toque secreto: miel de maguey.</p>
+                    <p><strong>Precio especial:</strong> $299 (solo por tiempo limitado)</p>
+                    <p><strong>Tiempo de preparación:</strong> 15 minutos en nuestro horno de leña tradicional.</p>
+                    <button class="btn" id="specialPizzaBtn" data-pizza="Pizza Don Guiseppe" data-price="299">Ordenar Especialidad</button>
+                </div>
+                <div class="specials-image">
+                    <img src="https://images.unsplash.com/photo-1601924582970-9238bcb495d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Pizza Especial de la Casa" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="section gallery" id="galeria">
+        <div class="container">
+            <h2 class="section-title">Nuestro Local</h2>
+            <div class="carousel">
+                <div class="carousel-track-container">
+                    <div class="carousel-track">
+                        <!-- Slide 1 -->
+                        <div class="carousel-slide">
+                            <div class="carousel-image">
+                                <img src="assets/images/pizzeria1.jpeg" alt="Interior de la pizzería">
+                            </div>
+                            <div class="carousel-caption">
+                                <p>Ambiente cálido y familiar para disfrutar en compañía</p>
+                            </div>
+                        </div>
+                        <!-- Slide 2 -->
+                        <div class="carousel-slide">
+                            <div class="carousel-image">
+                                <img src="assets/images/pizzeria2.jpeg" alt="Horno de leña tradicional">
+                            </div>
+                            <div class="carousel-caption">
+                                <p>Nuestro horno de leña alcanza 450°C para pizzas perfectas</p>
+                            </div>
+                        </div>
+                        <!-- Slide 3 -->
+                        <div class="carousel-slide">
+                            <div class="carousel-image">
+                                <img src="https://images.unsplash.com/photo-1574126154517-d1e0d89ef734?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Ingredientes frescos">
+                            </div>
+                            <div class="carousel-caption">
+                                <p>Solo utilizamos ingredientes frescos y de la mejor calidad</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-btn prev" aria-label="Slide anterior">&#10094;</button>
+                <button class="carousel-btn next" aria-label="Slide siguiente">&#10095;</button>
+                <div class="carousel-indicators">
+                    <button class="carousel-indicator active" data-index="0" aria-label="Ir al slide 1"></button>
+                    <button class="carousel-indicator" data-index="1" aria-label="Ir al slide 2"></button>
+                    <button class="carousel-indicator" data-index="2" aria-label="Ir al slide 3"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hours Section -->
+    <section class="section hours">
+        <div class="container">
+            <h2 class="section-title">Horarios de Atención</h2>
+            <div class="hours-content">
+                <div class="hours-table">
+                    <h3>Horario del Restaurante</h3>
+                    <table>
+                        <tr>
+                            <td class="day">Lunes - Jueves</td>
+                            <td class="time">12:00 PM - 10:00 PM</td>
+                        </tr>
+                        <tr>
+                            <td class="day">Viernes - Sábado</td>
+                            <td class="time">12:00 PM - 11:00 PM</td>
+                        </tr>
+                        <tr>
+                            <td class="day">Domingo</td>
+                            <td class="time">12:00 PM - 9:00 PM</td>
+                        </tr>
+                        <tr>
+                            <td class="day">Servicio a Domicilio</td>
+                            <td class="time">Todos los días hasta 30 min antes del cierre</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="section" id="contacto">
+        <div class="container">
+            <h2 class="section-title">Encuéntranos</h2>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d233.63929199084868!2d-100.62103199712392!3d20.45579900578992!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2smx!4v1765599609034!5m2!1ses!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Güero´s Pizza</h3>
+                    <p>20 años llevando deliciosa pizza a </p>
+                    <p>su mesa con la tradición, calidad </p>
+                    <p>y sabor inigualables.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Menú Rápido</h3>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#nosotros">Nosotros</a></li>
+                        <li><a href="#menu">Menú</a></li>
+                        <li><a href="#especialidades">Especialidades</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul>
+                        <li>Teléfono: <a href="tel:+524427128200">442 712 8200</a></li>
+                        <li>WhatsApp: <a href="https://wa.me/524427128200">+52 442 712 8200</a></li>
+                        <li>Dirección: Jardín Cuauhtémoc, Zona Centro, Apaseo el Alto, Gto.</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Síguenos</h3>
+                    <div class="social-links">
+                        <a href="" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="" aria-label="TikTok">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; <span id="currentYear"></span> Güero´s Pizza. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <div class="whatsapp-btn" id="whatsappBtn" 
+       aria-label="Pedir pizza por WhatsApp" 
+       role="button" 
+       tabindex="0"
+       title="Haz tu pedido por WhatsApp">
+      <div class="whatsapp-icon-btn" aria-hidden="true"></div>
+    </div>
+
+
+
+   <!-- Modal para pedido de pizza - VERSIÓN MÚLTIPLES PIZZAS -->
+<div id="pizzaModal" class="modal" role="dialog" aria-labelledby="modalTitle" aria-modal="true">
+    <div class="modal-content">
+        <button class="close-modal" aria-label="Cerrar modal">&times;</button>
+        <h3 id="modalTitle">🍕 Pedir Pizza por WhatsApp</h3>
+        
+        <div class="pizza-options">
+            <h4>Selecciona tus pizzas (puedes elegir varias):</h4>
+            <!-- Las opciones se generan dinámicamente con JavaScript -->
+        </div>
+        
+        <div id="orderSummary" style="margin: 1rem 0; padding: 1rem; background: #f5f5f5; border-radius: 8px; display: none;">
+            <h4>📋 Resumen del Pedido:</h4>
+            <div id="selectedPizzasList"></div>
+            <div id="totalPrice" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #ccc; font-weight: bold; font-size: 1.2rem;"></div>
+        </div>
+        
+        <div class="location-section">
+            <label for="userLocation">📍 Tu ubicación para entrega:</label>
+            <div id="locationStatus" class="location-status">
+                <span id="locationText">Obteniendo ubicación...</span>
+                <div class="location-loading" aria-hidden="true"></div>
+            </div>
+            <button id="getLocationBtn" class="btn-location">🔄 Actualizar Ubicación</button>
+        </div>
+        
+        <div class="message-section">
+            <label for="userMessage">📝 Instrucciones especiales (opcional):</label>
+            <textarea id="userMessage" placeholder="Ejemplo: Sin cebolla, bien cocida, cortada en 8 porciones..."></textarea>
+        </div>
+        
+        <button id="sendWhatsApp" class="btn-send" disabled>
+            📤 Enviar Pedido por WhatsApp ( <span id="itemCount">0</span> items )
+        </button>
+        
+        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #eee; font-size: 0.9rem; color: #666;">
+            <p><strong>💡 Instrucciones:</strong></p>
+            <ul style="padding-left: 20px; margin-top: 5px;">
+                <li>Haz clic en cualquier pizza para seleccionarla</li>
+                <li>Usa los botones + y - para ajustar la cantidad</li>
+                <li>Puedes seleccionar varias pizzas diferentes</li>
+                <li>El botón de enviar se activará cuando tengas al menos 1 pizza y ubicación</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Modal WhatsApp Mejorado -->
+<div id="whatsappModal" class="modal" role="dialog" aria-labelledby="whatsappModalTitle" aria-modal="true">
+    <div class="whatsapp-modal-content">
+        <button class="whatsapp-close-modal" aria-label="Cerrar modal">&times;</button>
+        
+        <div class="whatsapp-header">
+            <h3 id="whatsappModalTitle">📱 Pedir por WhatsApp</h3>
+            <p style="opacity: 0.9; margin-top: 5px;">¡Envíanos tu pedido directamente a nuestro WhatsApp!</p>
+        </div>
+        
+        <form id="whatsappForm">
+            <div class="whatsapp-form-group">
+                <label for="whatsappName" class="required">Tu Nombre</label>
+                <input type="text" id="whatsappName" class="whatsapp-form-control" 
+                       placeholder="Ej: Juan Pérez" required
+                       aria-required="true">
+            </div>
+            
+            <div class="whatsapp-form-group">
+                <label for="whatsappPhone" class="required">Tu Teléfono (para contactarte)</label>
+                <input type="tel" id="whatsappPhone" class="whatsapp-form-control" 
+                placeholder="Ej: 4427128200, +524427128200 o 5214427128200"
+                pattern="^(\+52|52|521?)?\d{10}$" required
+                aria-required="true"
+                title="Tu número de teléfono donde te contactaremos">
+                <div id="phoneValidation" class="validation-message"></div>
+            </div>
+            
+            <div class="whatsapp-form-group">
+                <label for="whatsappMessage" class="required">Tu Pedido</label>
+                <textarea id="whatsappMessage" class="whatsapp-form-control" 
+                          placeholder="Ej: 1 Pizza Margherita, 1 Pizza Pepperoni, 2 Coca Cola, etc..."
+                          required aria-required="true"></textarea>
+                <div class="char-counter">Máximo 500 caracteres: <span id="charCount">0</span>/500</div>
+            </div>
+            
+            <div class="whatsapp-form-group">
+                <div class="location-section">
+                    <label class="required">📍 Ubicación para entrega</label>
+                    <div id="whatsappLocationStatus" class="location-status">
+                        <span id="whatsappLocationText">Haz clic en "Obtener Ubicación" o escribe tu dirección</span>
+                    </div>
+                    
+                    <div class="location-buttons">
+                        <button type="button" id="whatsappGetLocationBtn" class="btn-location">
+                            📍 Obtener Ubicación Automática
+                        </button>
+                        <button type="button" id="whatsappManualLocationBtn" class="btn-manual-location">
+                            ✏️ Escribir Ubicación
+                        </button>
+                    </div>
+                    
+                    <div id="manualLocationInput" class="manual-location-input">
+                        <input type="text" id="whatsappManualAddress" class="whatsapp-form-control" 
+                               placeholder="Ej: Calle Principal #123, Colonia Centro, Apaseo el Alto, Gto.">
+                        <button type="button" id="whatsappSaveManualLocation" class="btn-location" style="margin-top: 10px;">
+                            ✅ Guardar Esta Dirección
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <button type="submit" id="whatsappSendBtn" class="btn-whatsapp" disabled>
+                <span class="whatsapp-icon"></span>
+                Enviar Pedido por WhatsApp
+            </button>
+            
+            <div class="success-message" id="successMessage">
+                <h4>✅ ¡Pedido listo para enviar!</h4>
+                <p>Se abrirá WhatsApp con tu pedido completo.</p>
+            </div>
+        </form>
+        
+        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #eee; font-size: 0.9rem; color: #666;">
+               <p><strong>📱 Información importante:</strong></p>
+           <ul style="padding-left: 20px; margin-top: 5px;">
+              <li>El mensaje se enviará al WhatsApp de la pizzería: <strong>442 712 8200</strong></li>
+              <li>Tu teléfono se incluirá en el mensaje para contactarte</li>
+              <li>En Android se abrirá la app de WhatsApp</li>
+              <li>En iOS/escritorio se abrirá WhatsApp Web</li>
+              <li>El teléfono debe tener 10 dígitos (formatos mexicanos aceptados)</li>
+              <li>Incluimos enlace de Google Maps con tu ubicación</li>
+              <li>Tiempo de entrega: 30-45 minutos (según ubicación)</li>
+           </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Agregar este código JavaScript al final del archivo, antes del cierre del body -->
+
+<script>
+// WhatsApp Modal Mejorado
+document.addEventListener('DOMContentLoaded', function() {
+    // Elementos del modal WhatsApp
+    const whatsappModalBtn = document.getElementById('whatsappBtn');
+    const whatsappModal = document.getElementById('whatsappModal');
+    const whatsappCloseModal = document.querySelector('.whatsapp-close-modal');
+    const whatsappForm = document.getElementById('whatsappForm');
+    const whatsappName = document.getElementById('whatsappName');
+    const whatsappPhone = document.getElementById('whatsappPhone');
+    const whatsappMessage = document.getElementById('whatsappMessage');
+    const whatsappLocationText = document.getElementById('whatsappLocationText');
+    const whatsappLocationStatus = document.getElementById('whatsappLocationStatus');
+    const whatsappGetLocationBtn = document.getElementById('whatsappGetLocationBtn');
+    const whatsappManualLocationBtn = document.getElementById('whatsappManualLocationBtn');
+    const manualLocationInput = document.getElementById('manualLocationInput');
+    const whatsappManualAddress = document.getElementById('whatsappManualAddress');
+    const whatsappSaveManualLocation = document.getElementById('whatsappSaveManualLocation');
+    const whatsappSendBtn = document.getElementById('whatsappSendBtn');
+    const phoneValidation = document.getElementById('phoneValidation');
+    const charCount = document.getElementById('charCount');
+    const successMessage = document.getElementById('successMessage');
+    
+    let userLocation = null;
+    let isManualLocation = false;
+    let manualAddress = '';
+    const phoneNumber = '524427128200'; // Número de WhatsApp de la pizzería
+    const maxMessageLength = 500;
+    
+    // Configurar contador de caracteres
+    whatsappMessage.addEventListener('input', function() {
+        const length = this.value.length;
+        charCount.textContent = length;
+        
+        if (length > maxMessageLength) {
+            this.value = this.value.substring(0, maxMessageLength);
+            charCount.textContent = maxMessageLength;
+        }
+        
+        updateSendButton();
+    });
+    
+    // Validación de teléfono mexicano
+    function validateMexicanPhone(phone) {
+        // Eliminar espacios, guiones, paréntesis
+        const cleaned = phone.replace(/[\s\-()]/g, '');
+        
+        // Patrones aceptados:
+        // 1. 4427128200 (10 dígitos)
+        // 2. +524427128200 (+52 + 10 dígitos)
+        // 3. 524427128200 (52 + 10 dígitos)
+        // 4. 5214427128200 (521 + 10 dígitos)
+        const patterns = [
+            /^\d{10}$/,                       // 10 dígitos
+            /^\+52\d{10}$/,                   // +52 + 10 dígitos
+            /^52\d{10}$/,                     // 52 + 10 dígitos
+            /^521\d{10}$/                     // 521 + 10 dígitos
+        ];
+        
+        return patterns.some(pattern => pattern.test(cleaned));
+    }
+    
+    whatsappPhone.addEventListener('input', function() {
+        const phone = this.value;
+        const isValid = validateMexicanPhone(phone);
+        
+        if (!phone) {
+            phoneValidation.textContent = '';
+            phoneValidation.className = 'validation-message';
+        } else if (isValid) {
+            phoneValidation.textContent = '✓ Teléfono válido';
+            phoneValidation.className = 'validation-message validation-success';
+        } else {
+            phoneValidation.textContent = '✗ Formato no válido. Use 10 dígitos, +52, 52 o 521 + 10 dígitos';
+            phoneValidation.className = 'validation-message validation-error';
+        }
+        
+        updateSendButton();
+    });
+    
+    // Obtener ubicación automática
+    function getWhatsappLocation() {
+        whatsappLocationText.textContent = 'Obteniendo ubicación...';
+        whatsappLocationStatus.classList.remove('location-success', 'location-error');
+        
+        if (!navigator.geolocation) {
+            showLocationError('Geolocalización no soportada por tu navegador');
+            return;
+        }
+        
+        // Mostrar indicador de carga
+        const loadingIndicator = document.createElement('div');
+        loadingIndicator.className = 'location-loading';
+        whatsappLocationStatus.appendChild(loadingIndicator);
+        
+        navigator.geolocation.getCurrentPosition(
+            // Success
+            function(position) {
+                const lat = position.coords.latitude;
+                const lng = position.coords.longitude;
+                userLocation = { lat, lng };
+                isManualLocation = false;
+                
+                // Obtener dirección en formato coloquial
+                getAddressFromCoordinates(lat, lng);
+                
+                // Remover indicador de carga
+                const loading = whatsappLocationStatus.querySelector('.location-loading');
+                if (loading) loading.remove();
+            },
+            // Error
+            function(error) {
+                let errorMessage = 'No se pudo obtener la ubicación automática';
+                
+                switch(error.code) {
+                    case error.PERMISSION_DENIED:
+                        errorMessage = 'Permiso de ubicación denegado. Usa la opción manual.';
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                        errorMessage = 'Información de ubicación no disponible. Usa la opción manual.';
+                        break;
+                    case error.TIMEOUT:
+                        errorMessage = 'Tiempo de espera agotado. Usa la opción manual.';
+                        break;
+                }
+                
+                showLocationError(errorMessage);
+                
+                // Remover indicador de carga
+                const loading = whatsappLocationStatus.querySelector('.location-loading');
+                if (loading) loading.remove();
+            },
+            // Options
+            {
+                enableHighAccuracy: true,
+                timeout: 15000,
+                maximumAge: 60000
+            }
+        );
+    }
+    
+    // Obtener dirección desde coordenadas
+    function getAddressFromCoordinates(lat, lng) {
+        fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=18&addressdetails=1&accept-language=es`)
+            .then(response => response.json())
+            .then(data => {
+                let formattedAddress = '';
+                
+                if (data && data.address) {
+                    const addr = data.address;
+                    
+                    // Formato coloquial mexicano
+                    let street = addr.road || '';
+                    if (street && !/^(calle|avenida|av\.|av |blvd)/i.test(street)) {
+                        street = 'Calle ' + street;
+                    }
+                    
+                    if (addr.house_number) {
+                        street += ` #${addr.house_number}`;
+                    }
+                    
+                    if (addr.suburb || addr.neighbourhood) {
+                        if (street) street += `, ${addr.suburb || addr.neighbourhood}`;
+                        else street = addr.suburb || addr.neighbourhood;
+                    }
+                    
+                    const city = addr.city || addr.town || addr.village || '';
+                    const state = addr.state || '';
+                    
+                    if (city && !street.includes(city)) {
+                        if (street) formattedAddress = `${street}, ${city}`;
+                        else formattedAddress = city;
+                    } else {
+                        formattedAddress = street || '';
+                    }
+                    
+                    if (state && !formattedAddress.includes(state)) {
+                        formattedAddress += `, ${state}`;
+                    }
+                }
+                
+                if (!formattedAddress || formattedAddress.length < 10) {
+                    if (data && data.display_name) {
+                        formattedAddress = data.display_name
+                            .split(',')
+                            .slice(0, 3)
+                            .join(', ')
+                            .trim();
+                    } else {
+                        formattedAddress = `Coordenadas: ${lat.toFixed(6)}, ${lng.toFixed(6)}`;
+                    }
+                }
+                
+                showLocationSuccess(formattedAddress);
+            })
+            .catch(error => {
+                console.log('Geocoding error:', error);
+                showLocationSuccess(`Ubicación: ${lat.toFixed(6)}, ${lng.toFixed(6)}`);
+            });
+    }
+    
+    function showLocationSuccess(address) {
+        whatsappLocationText.textContent = `📍 ${address}`;
+        whatsappLocationStatus.classList.add('location-success');
+        updateSendButton();
+    }
+    
+    function showLocationError(message) {
+        whatsappLocationText.textContent = `❌ ${message}`;
+        whatsappLocationStatus.classList.add('location-error');
+        updateSendButton();
+    }
+    
+    // Abrir modal WhatsApp
+    whatsappModalBtn.addEventListener('click', function() {
+        whatsappModal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+        
+        // Intentar obtener ubicación automáticamente al abrir
+        setTimeout(() => {
+            if (!userLocation && !isManualLocation) {
+                getWhatsappLocation();
+            }
+        }, 500);
+    });
+    
+    // Cerrar modal
+    whatsappCloseModal.addEventListener('click', function() {
+        whatsappModal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+        resetWhatsappForm();
+    });
+    
+    // Cerrar con tecla ESC
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && whatsappModal.style.display === 'block') {
+            whatsappModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            resetWhatsappForm();
+        }
+    });
+    
+    // Cerrar al hacer click fuera
+    window.addEventListener('click', function(event) {
+        if (event.target === whatsappModal) {
+            whatsappModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            resetWhatsappForm();
+        }
+    });
+    
+    // Botón obtener ubicación
+    whatsappGetLocationBtn.addEventListener('click', function() {
+        getWhatsappLocation();
+        manualLocationInput.classList.remove('active');
+        isManualLocation = false;
+    });
+    
+    // Botón ubicación manual
+    whatsappManualLocationBtn.addEventListener('click', function() {
+        manualLocationInput.classList.add('active');
+        isManualLocation = true;
+        updateSendButton();
+    });
+    
+    // Guardar ubicación manual
+    whatsappSaveManualLocation.addEventListener('click', function() {
+        const address = whatsappManualAddress.value.trim();
+        if (address.length < 10) {
+            alert('Por favor, escribe una dirección más detallada (mínimo 10 caracteres)');
+            return;
+        }
+        
+        manualAddress = address;
+        whatsappLocationText.textContent = `📍 ${address}`;
+        whatsappLocationStatus.classList.add('location-success');
+        manualLocationInput.classList.remove('active');
+        updateSendButton();
+    });
+    
+    // Actualizar estado del botón enviar
+    function updateSendButton() {
+        const nameValid = whatsappName.value.trim().length >= 2;
+        const phoneValid = validateMexicanPhone(whatsappPhone.value);
+        const messageValid = whatsappMessage.value.trim().length >= 5;
+        const hasLocation = (userLocation || (isManualLocation && manualAddress)) && 
+                           whatsappLocationStatus.classList.contains('location-success');
+        
+        whatsappSendBtn.disabled = !(nameValid && phoneValid && messageValid && hasLocation);
+    }
+    
+    // Eventos para validación en tiempo real
+    whatsappName.addEventListener('input', updateSendButton);
+    whatsappPhone.addEventListener('input', updateSendButton);
+    whatsappMessage.addEventListener('input', updateSendButton);
+    
+    // Enviar formulario
+    whatsappForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        sendWhatsAppMessage();
+    });
+    
+    whatsappSendBtn.addEventListener('click', function() {
+        if (!whatsappSendBtn.disabled) {
+            sendWhatsAppMessage();
+        }
+    });
+    
+    // Función sendWhatsAppMessage() CORREGIDA
+    function sendWhatsAppMessage() {
+        const name = whatsappName.value.trim();
+        const phone = whatsappPhone.value.trim();
+        const message = whatsappMessage.value.trim();
+        let location = '';
+        let mapsUrl = '';
+        
+        // Preparar ubicación para el mensaje
+        if (isManualLocation && manualAddress) {
+            location = manualAddress;
+            // Crear enlace de búsqueda en Google Maps CORREGIDO
+            mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location)}`;
+        } else if (userLocation) {
+            location = whatsappLocationText.textContent.replace('📍 ', '');
+            mapsUrl = `https://www.google.com/maps?q=${userLocation.lat},${userLocation.lng}`;
+        }
+        
+        // Construir mensaje completo CON los datos del cliente
+        let whatsappMessageText = `*🍕 Güero´s Pizza - Nuevo Pedido Online*\n\n`;
+        whatsappMessageText += `*👤 CLIENTE:* ${name}\n`;
+        whatsappMessageText += `*📱 TELÉFONO DEL CLIENTE:* ${phone}\n\n`;
+        whatsappMessageText += `*📝 PEDIDO SOLICITADO:*\n${message}\n\n`;
+        whatsappMessageText += `*📍 UBICACIÓN DE ENTREGA:*\n${location}\n\n`;
+        whatsappMessageText += `*🗺️ ENLACE GOOGLE MAPS:*\n${mapsUrl}\n\n`;
+        whatsappMessageText += `*⏰ HORA DEL PEDIDO:* ${new Date().toLocaleString('es-MX')}\n`;
+        whatsappMessageText += `\n_📲 Pedido generado desde la web de Güero´s Pizza_`;
+        
+        // Codificar para URL
+        const encodedMessage = encodeURIComponent(whatsappMessageText);
+        
+        // URL de WhatsApp CORREGIDA - siempre al número de la pizzería
+        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+        
+        // Mostrar mensaje de éxito
+        successMessage.classList.add('show');
+        
+        // Abrir WhatsApp después de breve pausa
+        setTimeout(() => {
+            // Abrir en nueva ventana
+            window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+            
+            // Cerrar modal después de enviar
+            setTimeout(() => {
+                whatsappModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                resetWhatsappForm();
+                successMessage.classList.remove('show');
+            }, 1500);
+        }, 800);
+    }
+    
+    function resetWhatsappForm() {
+        whatsappForm.reset();
+        whatsappLocationText.textContent = 'Haz clic en "Obtener Ubicación" o escribe tu dirección';
+        whatsappLocationStatus.className = 'location-status';
+        manualLocationInput.classList.remove('active');
+        whatsappManualAddress.value = '';
+        userLocation = null;
+        isManualLocation = false;
+        manualAddress = '';
+        phoneValidation.textContent = '';
+        phoneValidation.className = 'validation-message';
+        charCount.textContent = '0';
+        updateSendButton();
+    }
+});
+</script>
+
+
+ 
+</body>
+</html>
